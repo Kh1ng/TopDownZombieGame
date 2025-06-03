@@ -1,0 +1,26 @@
+{
+    "layerUsage": [
+        {
+            "layerId": 0,
+            "layerName": "Default",
+            "objectCount": 4
+        }
+    ],
+    "tagUsage": [
+        {
+            "tagName": "Untagged",
+            "objectCount": 3
+        },
+        {
+            "tagName": "MainCamera",
+            "objectCount": 1
+        }
+    ],
+    "sortingLayers": [
+        {
+            "id": 0,
+            "name": "Default",
+            "value": 0
+        }
+    ]
+}

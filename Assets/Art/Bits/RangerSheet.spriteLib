@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: Main
+    m_Hash: 521822810
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Ranger_east
+      m_Hash: 139454327
+      m_Sprite: {fileID: 21300000, guid: b6ff109b72516e7438ecc38dbd7ef01b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: b6ff109b72516e7438ecc38dbd7ef01b, type: 3}
+    - m_Name: Ranger_north
+      m_Hash: 164594058
+      m_Sprite: {fileID: 21300000, guid: db3cfafb134ed66409f746cb2f6336dc, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: db3cfafb134ed66409f746cb2f6336dc, type: 3}
+    - m_Name: Ranger_south
+      m_Hash: 351323196
+      m_Sprite: {fileID: 21300000, guid: 6da746cd01c2233498a3639256370fe1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 6da746cd01c2233498a3639256370fe1, type: 3}
+    - m_Name: RangerH_east
+      m_Hash: 566236506
+      m_Sprite: {fileID: 21300000, guid: 516d3254312e71d49a750a3b93c6b319, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 516d3254312e71d49a750a3b93c6b319, type: 3}
+    - m_Name: RangerH_north
+      m_Hash: 209277453
+      m_Sprite: {fileID: 21300000, guid: 46eabe8e8613ecc41a78deab15fa85a2, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 46eabe8e8613ecc41a78deab15fa85a2, type: 3}
+    - m_Name: RangerH_south
+      m_Hash: 289806267
+      m_Sprite: {fileID: 21300000, guid: ee17825d38fd1834e98e2b91bd16bfe0, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: ee17825d38fd1834e98e2b91bd16bfe0, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 6
+  m_PrimaryLibraryGUID: 
+  m_ModificationHash: 638841610447307421
+  m_Version: 1

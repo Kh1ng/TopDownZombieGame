@@ -1,0 +1,91 @@
+{
+    "renderPipelineInfo": {
+        "currentRenderPipelineType": "UniversalRenderPipelineAsset",
+        "pipelineAssetName": "UniversalRP",
+        "mainLightRenderingMode": "PerPixel",
+        "supportsHDR": true,
+        "msaaSampleCount": 1,
+        "renderScale": 1.0,
+        "colorSpace": "Linear",
+        "anisotropicFiltering": "ForceEnable",
+        "antiAliasing": 0,
+        "realtimeReflectionProbes": true
+    },
+    "cameraInfo": [
+        {
+            "name": "Main Camera",
+            "path": "Main Camera",
+            "enabled": true,
+            "orthographic": true,
+            "orthographicSize": 5.0,
+            "fieldOfView": 34.0,
+            "depth": -1.0,
+            "clearFlags": "SolidColor",
+            "backgroundColor": "RGBA(0.192, 0.302, 0.475, 0.000)",
+            "cullingMask": "Mask: -1 (Default, TransparentFX, Ignore Raycast, Layer 3, Water, UI, Layer 6, Layer 7, Layer 8, Layer 9, Layer 10, Layer 11, Layer 12, Layer 13, Layer 14, Layer 15, Layer 16, Layer 17, Layer 18, Layer 19, Layer 20, Layer 21, Layer 22, Layer 23, Layer 24, Layer 25, Layer 26, Layer 27, Layer 28, Layer 29, Layer 30, Layer 31)",
+            "targetTexture": "null",
+            "renderType": "Base",
+            "renderPostProcessing": false,
+            "antialiasing": "None",
+            "renderShadows": true,
+            "volumeLayerMask": "Mask: 1 (Default)"
+        }
+    ],
+    "materialInfo": [
+        {
+            "name": "Spritesheet (Instance) (Instance)",
+            "shader": "Sprites/Default",
+            "renderQueue": 3000,
+            "isUsingBuiltInShader": true,
+            "isUsingURPShader": false,
+            "isTransparent": false,
+            "color": "RGBA(1.000, 1.000, 1.000, 1.000)",
+            "mainTexture": "RangerSpritesheet"
+        }
+    ],
+    "lightingInfo": {
+        "ambientMode": "Flat",
+        "ambientColor": "RGBA(0.212, 0.227, 0.259, 1.000)",
+        "ambientIntensity": 1.0,
+        "fogEnabled": false,
+        "fogColor": "RGBA(0.500, 0.500, 0.500, 1.000)",
+        "lightCount": 0,
+        "light2DCount": 1,
+        "hasGlobalLight": true,
+        "globalLightColor": "RGBA(1.000, 1.000, 1.000, 1.000)",
+        "globalLightIntensity": 1.0
+    },
+    "rendererInfo": [
+        {
+            "name": "Character",
+            "path": "Character",
+            "enabled": true,
+            "isVisible": true,
+            "sortingLayerName": "Default",
+            "sortingOrder": 0,
+            "materialCount": 1,
+            "receiveShadows": true,
+            "lightmapIndex": -1,
+            "hasMissingMaterial": false
+        }
+    ],
+    "spriteInfo": [],
+    "meshInfo": [
+        {
+            "name": "Character",
+            "path": "Character",
+            "meshName": "Character",
+            "vertexCount": 0,
+            "subMeshCount": 1,
+            "triangleCount": 0,
+            "hasNormals": false,
+            "hasTangents": false,
+            "hasUVs": false,
+            "hasColors": false
+        }
+    ],
+    "missingComponents": [],
+    "visualIssues": [
+        "Project is using URP but has materials with built-in render pipeline shaders"
+    ]
+}

@@ -1,0 +1,31 @@
+{
+    "hasInputSystemPackage": true,
+    "hasLegacyInput": true,
+    "hasStandaloneInputModule": false,
+    "hasInputSystemUIModule": false,
+    "legacyInputModules": [],
+    "newInputModules": [],
+    "inputScripts": [
+        {
+            "name": "InputSystemDumper",
+            "gameObjectName": "Debug",
+            "path": "Debug",
+            "usesLegacyInput": true,
+            "usesNewInputSystem": true
+        },
+        {
+            "name": "SceneComponentDumper",
+            "gameObjectName": "Debug",
+            "path": "Debug",
+            "usesLegacyInput": false,
+            "usesNewInputSystem": true
+        },
+        {
+            "name": "CharacterMovement",
+            "gameObjectName": "Character",
+            "path": "Character",
+            "usesLegacyInput": true,
+            "usesNewInputSystem": false
+        }
+    ]
+}

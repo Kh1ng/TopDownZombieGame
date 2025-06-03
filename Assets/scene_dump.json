@@ -1,0 +1,1411 @@
+{
+    "objects": [
+        {
+            "name": "Debug",
+            "path": "Debug",
+            "active": true,
+            "parent": "",
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "childCount": 0,
+            "siblingIndex": 3,
+            "components": [
+                {
+                    "type": "UnityEngine.Transform",
+                    "fields": [
+                        {
+                            "key": "parent",
+                            "value": "null"
+                        },
+                        {
+                            "key": "root",
+                            "value": "Debug (UnityEngine.Transform)"
+                        },
+                        {
+                            "key": "childCount",
+                            "value": "0"
+                        }
+                    ],
+                    "references": []
+                },
+                {
+                    "type": "LayerAndTagDumper",
+                    "fields": [
+                        {
+                            "key": "destroyCancellationToken",
+                            "value": "System.Threading.CancellationToken"
+                        },
+                        {
+                            "key": "useGUILayout",
+                            "value": "True"
+                        },
+                        {
+                            "key": "didStart",
+                            "value": "False"
+                        },
+                        {
+                            "key": "didAwake",
+                            "value": "False"
+                        },
+                        {
+                            "key": "runInEditMode",
+                            "value": "False"
+                        },
+                        {
+                            "key": "enabled",
+                            "value": "True"
+                        },
+                        {
+                            "key": "isActiveAndEnabled",
+                            "value": "True"
+                        }
+                    ],
+                    "references": []
+                },
+                {
+                    "type": "SceneComponentDumper",
+                    "fields": [
+                        {
+                            "key": "destroyCancellationToken",
+                            "value": "System.Threading.CancellationToken"
+                        },
+                        {
+                            "key": "useGUILayout",
+                            "value": "True"
+                        },
+                        {
+                            "key": "didStart",
+                            "value": "False"
+                        },
+                        {
+                            "key": "didAwake",
+                            "value": "False"
+                        },
+                        {
+                            "key": "runInEditMode",
+                            "value": "False"
+                        },
+                        {
+                            "key": "enabled",
+                            "value": "True"
+                        },
+                        {
+                            "key": "isActiveAndEnabled",
+                            "value": "True"
+                        }
+                    ],
+                    "references": []
+                },
+                {
+                    "type": "SceneComponentDumperPosition",
+                    "fields": [
+                        {
+                            "key": "destroyCancellationToken",
+                            "value": "System.Threading.CancellationToken"
+                        },
+                        {
+                            "key": "useGUILayout",
+                            "value": "True"
+                        },
+                        {
+                            "key": "didStart",
+                            "value": "False"
+                        },
+                        {
+                            "key": "didAwake",
+                            "value": "False"
+                        },
+                        {
+                            "key": "runInEditMode",
+                            "value": "False"
+                        },
+                        {
+                            "key": "enabled",
+                            "value": "True"
+                        },
+                        {
+                            "key": "isActiveAndEnabled",
+                            "value": "True"
+                        }
+                    ],
+                    "references": []
+                },
+                {
+                    "type": "SceneVisualDumper",
+                    "fields": [
+                        {
+                            "key": "destroyCancellationToken",
+                            "value": "System.Threading.CancellationToken"
+                        },
+                        {
+                            "key": "useGUILayout",
+                            "value": "True"
+                        },
+                        {
+                            "key": "didStart",
+                            "value": "False"
+                        },
+                        {
+                            "key": "didAwake",
+                            "value": "False"
+                        },
+                        {
+                            "key": "runInEditMode",
+                            "value": "False"
+                        },
+                        {
+                            "key": "enabled",
+                            "value": "True"
+                        },
+                        {
+                            "key": "isActiveAndEnabled",
+                            "value": "True"
+                        }
+                    ],
+                    "references": []
+                },
+                {
+                    "type": "InputSystemDumper",
+                    "fields": [
+                        {
+                            "key": "destroyCancellationToken",
+                            "value": "System.Threading.CancellationToken"
+                        },
+                        {
+                            "key": "useGUILayout",
+                            "value": "True"
+                        },
+                        {
+                            "key": "didStart",
+                            "value": "False"
+                        },
+                        {
+                            "key": "didAwake",
+                            "value": "False"
+                        },
+                        {
+                            "key": "runInEditMode",
+                            "value": "False"
+                        },
+                        {
+                            "key": "enabled",
+                            "value": "True"
+                        },
+                        {
+                            "key": "isActiveAndEnabled",
+                            "value": "True"
+                        },
+                        {
+                            "key": "_usesInputSystem",
+                            "value": "Legacy Input"
+                        }
+                    ],
+                    "references": []
+                }
+            ],
+            "potentialIssues": []
+        },
+        {
+            "name": "Character",
+            "path": "Character",
+            "active": true,
+            "parent": "",
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "childCount": 0,
+            "siblingIndex": 2,
+            "components": [
+                {
+                    "type": "UnityEngine.Transform",
+                    "fields": [
+                        {
+                            "key": "parent",
+                            "value": "null"
+                        },
+                        {
+                            "key": "root",
+                            "value": "Character (UnityEngine.Transform)"
+                        },
+                        {
+                            "key": "childCount",
+                            "value": "0"
+                        }
+                    ],
+                    "references": []
+                },
+                {
+                    "type": "CharacterMovement",
+                    "fields": [
+                        {
+                            "key": "destroyCancellationToken",
+                            "value": "System.Threading.CancellationToken"
+                        },
+                        {
+                            "key": "useGUILayout",
+                            "value": "True"
+                        },
+                        {
+                            "key": "didStart",
+                            "value": "False"
+                        },
+                        {
+                            "key": "didAwake",
+                            "value": "False"
+                        },
+                        {
+                            "key": "runInEditMode",
+                            "value": "False"
+                        },
+                        {
+                            "key": "enabled",
+                            "value": "True"
+                        },
+                        {
+                            "key": "isActiveAndEnabled",
+                            "value": "True"
+                        }
+                    ],
+                    "references": []
+                },
+                {
+                    "type": "UnityEngine.MeshFilter",
+                    "fields": [
+                        {
+                            "key": "sharedMesh",
+                            "value": "Testing (UnityEngine.Mesh)"
+                        },
+                        {
+                            "key": "mesh",
+                            "value": "Character (UnityEngine.Mesh)"
+                        }
+                    ],
+                    "references": []
+                },
+                {
+                    "type": "MeshVisualizer",
+                    "fields": [
+                        {
+                            "key": "destroyCancellationToken",
+                            "value": "System.Threading.CancellationToken"
+                        },
+                        {
+                            "key": "useGUILayout",
+                            "value": "True"
+                        },
+                        {
+                            "key": "didStart",
+                            "value": "False"
+                        },
+                        {
+                            "key": "didAwake",
+                            "value": "False"
+                        },
+                        {
+                            "key": "runInEditMode",
+                            "value": "False"
+                        },
+                        {
+                            "key": "enabled",
+                            "value": "True"
+                        },
+                        {
+                            "key": "isActiveAndEnabled",
+                            "value": "True"
+                        }
+                    ],
+                    "references": []
+                },
+                {
+                    "type": "UnityEngine.MeshRenderer",
+                    "fields": [
+                        {
+                            "key": "additionalVertexStreams",
+                            "value": "null"
+                        },
+                        {
+                            "key": "enlightenVertexStream",
+                            "value": "null"
+                        },
+                        {
+                            "key": "subMeshStartIndex",
+                            "value": "0"
+                        },
+                        {
+                            "key": "scaleInLightmap",
+                            "value": "1"
+                        },
+                        {
+                            "key": "receiveGI",
+                            "value": "Lightmaps"
+                        },
+                        {
+                            "key": "stitchLightmapSeams",
+                            "value": "True"
+                        },
+                        {
+                            "key": "lightmapTilingOffset",
+                            "value": "(0.00, 0.00, 0.00, 0.00)"
+                        },
+                        {
+                            "key": "lightProbeAnchor",
+                            "value": "null"
+                        },
+                        {
+                            "key": "castShadows",
+                            "value": "True"
+                        },
+                        {
+                            "key": "motionVectors",
+                            "value": "True"
+                        },
+                        {
+                            "key": "useLightProbes",
+                            "value": "True"
+                        },
+                        {
+                            "key": "bounds",
+                            "value": "Center: (-4.13, 0.17, 0.09), Extents: (0.00, 0.00, 0.00)"
+                        },
+                        {
+                            "key": "localBounds",
+                            "value": "Center: (0.00, 0.00, 0.00), Extents: (0.00, 0.00, 0.00)"
+                        },
+                        {
+                            "key": "enabled",
+                            "value": "True"
+                        },
+                        {
+                            "key": "isVisible",
+                            "value": "True"
+                        },
+                        {
+                            "key": "shadowCastingMode",
+                            "value": "On"
+                        },
+                        {
+                            "key": "receiveShadows",
+                            "value": "True"
+                        },
+                        {
+                            "key": "forceRenderingOff",
+                            "value": "False"
+                        },
+                        {
+                            "key": "staticShadowCaster",
+                            "value": "False"
+                        },
+                        {
+                            "key": "motionVectorGenerationMode",
+                            "value": "Object"
+                        },
+                        {
+                            "key": "lightProbeUsage",
+                            "value": "BlendProbes"
+                        },
+                        {
+                            "key": "reflectionProbeUsage",
+                            "value": "BlendProbes"
+                        },
+                        {
+                            "key": "renderingLayerMask",
+                            "value": "1"
+                        },
+                        {
+                            "key": "rendererPriority",
+                            "value": "0"
+                        },
+                        {
+                            "key": "rayTracingMode",
+                            "value": "DynamicTransform"
+                        },
+                        {
+                            "key": "rayTracingAccelerationStructureBuildFlags",
+                            "value": "PreferFastTrace"
+                        },
+                        {
+                            "key": "rayTracingAccelerationStructureBuildFlagsOverride",
+                            "value": "False"
+                        },
+                        {
+                            "key": "sortingLayerName",
+                            "value": "Default"
+                        },
+                        {
+                            "key": "sortingLayerID",
+                            "value": "0"
+                        },
+                        {
+                            "key": "sortingOrder",
+                            "value": "0"
+                        },
+                        {
+                            "key": "isLOD0",
+                            "value": "True"
+                        },
+                        {
+                            "key": "allowOcclusionWhenDynamic",
+                            "value": "True"
+                        },
+                        {
+                            "key": "isPartOfStaticBatch",
+                            "value": "False"
+                        },
+                        {
+                            "key": "lightProbeProxyVolumeOverride",
+                            "value": "null"
+                        },
+                        {
+                            "key": "probeAnchor",
+                            "value": "null"
+                        },
+                        {
+                            "key": "lightmapIndex",
+                            "value": "-1"
+                        },
+                        {
+                            "key": "realtimeLightmapIndex",
+                            "value": "-1"
+                        },
+                        {
+                            "key": "lightmapScaleOffset",
+                            "value": "(1.00, 1.00, 0.00, 0.00)"
+                        },
+                        {
+                            "key": "realtimeLightmapScaleOffset",
+                            "value": "(1.00, 1.00, 0.00, 0.00)"
+                        },
+                        {
+                            "key": "materials",
+                            "value": "UnityEngine.Material[]"
+                        },
+                        {
+                            "key": "material",
+                            "value": "Spritesheet (Instance) (Instance) (UnityEngine.Material)"
+                        },
+                        {
+                            "key": "sharedMaterial",
+                            "value": "Spritesheet (Instance) (Instance) (UnityEngine.Material)"
+                        },
+                        {
+                            "key": "sharedMaterials",
+                            "value": "UnityEngine.Material[]"
+                        },
+                        {
+                            "key": "LODGroup",
+                            "value": "null"
+                        }
+                    ],
+                    "references": []
+                },
+                {
+                    "type": "UnityEngine.Rigidbody2D",
+                    "fields": [
+                        {
+                            "key": "linearVelocity",
+                            "value": "(0.00, 0.00)"
+                        },
+                        {
+                            "key": "linearVelocityX",
+                            "value": "0"
+                        },
+                        {
+                            "key": "linearVelocityY",
+                            "value": "0"
+                        },
+                        {
+                            "key": "angularVelocity",
+                            "value": "0"
+                        },
+                        {
+                            "key": "useAutoMass",
+                            "value": "False"
+                        },
+                        {
+                            "key": "mass",
+                            "value": "1"
+                        },
+                        {
+                            "key": "sharedMaterial",
+                            "value": "null"
+                        },
+                        {
+                            "key": "centerOfMass",
+                            "value": "(0.00, 0.00)"
+                        },
+                        {
+                            "key": "worldCenterOfMass",
+                            "value": "(-4.13, 0.17)"
+                        },
+                        {
+                            "key": "inertia",
+                            "value": "1"
+                        },
+                        {
+                            "key": "linearDamping",
+                            "value": "0"
+                        },
+                        {
+                            "key": "angularDamping",
+                            "value": "0.05"
+                        },
+                        {
+                            "key": "gravityScale",
+                            "value": "0"
+                        },
+                        {
+                            "key": "bodyType",
+                            "value": "Dynamic"
+                        },
+                        {
+                            "key": "useFullKinematicContacts",
+                            "value": "False"
+                        },
+                        {
+                            "key": "freezeRotation",
+                            "value": "False"
+                        },
+                        {
+                            "key": "constraints",
+                            "value": "None"
+                        },
+                        {
+                            "key": "simulated",
+                            "value": "True"
+                        },
+                        {
+                            "key": "interpolation",
+                            "value": "None"
+                        },
+                        {
+                            "key": "sleepMode",
+                            "value": "StartAwake"
+                        },
+                        {
+                            "key": "collisionDetectionMode",
+                            "value": "Discrete"
+                        },
+                        {
+                            "key": "attachedColliderCount",
+                            "value": "0"
+                        },
+                        {
+                            "key": "totalForce",
+                            "value": "(0.00, 0.00)"
+                        },
+                        {
+                            "key": "totalTorque",
+                            "value": "0"
+                        },
+                        {
+                            "key": "excludeLayers",
+                            "value": "UnityEngine.LayerMask"
+                        },
+                        {
+                            "key": "includeLayers",
+                            "value": "UnityEngine.LayerMask"
+                        },
+                        {
+                            "key": "fixedAngle",
+                            "value": "False"
+                        },
+                        {
+                            "key": "isKinematic",
+                            "value": "False"
+                        },
+                        {
+                            "key": "drag",
+                            "value": "0"
+                        },
+                        {
+                            "key": "angularDrag",
+                            "value": "0.05"
+                        },
+                        {
+                            "key": "velocity",
+                            "value": "(0.00, 0.00)"
+                        },
+                        {
+                            "key": "velocityX",
+                            "value": "0"
+                        },
+                        {
+                            "key": "velocityY",
+                            "value": "0"
+                        },
+                        {
+                            "key": "bodyType",
+                            "value": "Dynamic"
+                        },
+                        {
+                            "key": "simulated",
+                            "value": "True"
+                        },
+                        {
+                            "key": "useAutoMass",
+                            "value": "False"
+                        },
+                        {
+                            "key": "isKinematic",
+                            "value": "False"
+                        }
+                    ],
+                    "references": []
+                }
+            ],
+            "potentialIssues": []
+        },
+        {
+            "name": "Main Camera",
+            "path": "Main Camera",
+            "active": true,
+            "parent": "",
+            "tag": "MainCamera",
+            "layer": 0,
+            "isStatic": false,
+            "childCount": 0,
+            "siblingIndex": 0,
+            "components": [
+                {
+                    "type": "UnityEngine.Transform",
+                    "fields": [
+                        {
+                            "key": "parent",
+                            "value": "null"
+                        },
+                        {
+                            "key": "root",
+                            "value": "Main Camera (UnityEngine.Transform)"
+                        },
+                        {
+                            "key": "childCount",
+                            "value": "0"
+                        }
+                    ],
+                    "references": []
+                },
+                {
+                    "type": "UnityEngine.Camera",
+                    "fields": [
+                        {
+                            "key": "nearClipPlane",
+                            "value": "0.3"
+                        },
+                        {
+                            "key": "farClipPlane",
+                            "value": "1000"
+                        },
+                        {
+                            "key": "fieldOfView",
+                            "value": "34"
+                        },
+                        {
+                            "key": "renderingPath",
+                            "value": "UsePlayerSettings"
+                        },
+                        {
+                            "key": "actualRenderingPath",
+                            "value": "Forward"
+                        },
+                        {
+                            "key": "allowHDR",
+                            "value": "True"
+                        },
+                        {
+                            "key": "allowMSAA",
+                            "value": "False"
+                        },
+                        {
+                            "key": "allowDynamicResolution",
+                            "value": "False"
+                        },
+                        {
+                            "key": "forceIntoRenderTexture",
+                            "value": "False"
+                        },
+                        {
+                            "key": "orthographicSize",
+                            "value": "5"
+                        },
+                        {
+                            "key": "orthographic",
+                            "value": "True"
+                        },
+                        {
+                            "key": "opaqueSortMode",
+                            "value": "Default"
+                        },
+                        {
+                            "key": "transparencySortMode",
+                            "value": "Default"
+                        },
+                        {
+                            "key": "transparencySortAxis",
+                            "value": "(0.00, 0.00, 1.00)"
+                        },
+                        {
+                            "key": "depth",
+                            "value": "-1"
+                        },
+                        {
+                            "key": "aspect",
+                            "value": "1.776995"
+                        },
+                        {
+                            "key": "velocity",
+                            "value": "(0.00, 0.00, 0.00)"
+                        },
+                        {
+                            "key": "cullingMask",
+                            "value": "-1"
+                        },
+                        {
+                            "key": "eventMask",
+                            "value": "-1"
+                        },
+                        {
+                            "key": "layerCullSpherical",
+                            "value": "False"
+                        },
+                        {
+                            "key": "cameraType",
+                            "value": "Game"
+                        },
+                        {
+                            "key": "overrideSceneCullingMask",
+                            "value": "0"
+                        },
+                        {
+                            "key": "layerCullDistances",
+                            "value": "System.Single[]"
+                        },
+                        {
+                            "key": "useOcclusionCulling",
+                            "value": "False"
+                        },
+                        {
+                            "key": "cullingMatrix",
+                            "value": "0.11255\t0.00000\t0.00000\t0.00000\n0.00000\t0.20000\t0.00000\t0.00000\n0.00000\t0.00000\t0.00200\t-0.98059\n0.00000\t0.00000\t0.00000\t1.00000\n"
+                        },
+                        {
+                            "key": "backgroundColor",
+                            "value": "RGBA(0.192, 0.302, 0.475, 0.000)"
+                        },
+                        {
+                            "key": "clearFlags",
+                            "value": "SolidColor"
+                        },
+                        {
+                            "key": "depthTextureMode",
+                            "value": "None"
+                        },
+                        {
+                            "key": "clearStencilAfterLightingPass",
+                            "value": "False"
+                        },
+                        {
+                            "key": "usePhysicalProperties",
+                            "value": "False"
+                        },
+                        {
+                            "key": "iso",
+                            "value": "200"
+                        },
+                        {
+                            "key": "shutterSpeed",
+                            "value": "0.005"
+                        },
+                        {
+                            "key": "aperture",
+                            "value": "16"
+                        },
+                        {
+                            "key": "focusDistance",
+                            "value": "10"
+                        },
+                        {
+                            "key": "focalLength",
+                            "value": "50"
+                        },
+                        {
+                            "key": "bladeCount",
+                            "value": "5"
+                        },
+                        {
+                            "key": "curvature",
+                            "value": "(2.00, 11.00)"
+                        },
+                        {
+                            "key": "barrelClipping",
+                            "value": "0.25"
+                        },
+                        {
+                            "key": "anamorphism",
+                            "value": "0"
+                        },
+                        {
+                            "key": "sensorSize",
+                            "value": "(36.00, 24.00)"
+                        },
+                        {
+                            "key": "lensShift",
+                            "value": "(0.00, 0.00)"
+                        },
+                        {
+                            "key": "gateFit",
+                            "value": "Horizontal"
+                        },
+                        {
+                            "key": "rect",
+                            "value": "(x:0.00, y:0.00, width:1.00, height:1.00)"
+                        },
+                        {
+                            "key": "pixelRect",
+                            "value": "(x:0.00, y:0.00, width:504.67, height:284.00)"
+                        },
+                        {
+                            "key": "pixelWidth",
+                            "value": "505"
+                        },
+                        {
+                            "key": "pixelHeight",
+                            "value": "284"
+                        },
+                        {
+                            "key": "scaledPixelWidth",
+                            "value": "505"
+                        },
+                        {
+                            "key": "scaledPixelHeight",
+                            "value": "284"
+                        },
+                        {
+                            "key": "targetTexture",
+                            "value": "null"
+                        },
+                        {
+                            "key": "activeTexture",
+                            "value": "null"
+                        },
+                        {
+                            "key": "targetDisplay",
+                            "value": "0"
+                        },
+                        {
+                            "key": "cameraToWorldMatrix",
+                            "value": "1.00000\t0.00000\t0.00000\t0.00000\n0.00000\t1.00000\t0.00000\t0.00000\n0.00000\t0.00000\t-1.00000\t-10.00000\n0.00000\t0.00000\t0.00000\t1.00000\n"
+                        },
+                        {
+                            "key": "worldToCameraMatrix",
+                            "value": "1.00000\t0.00000\t0.00000\t0.00000\n0.00000\t1.00000\t0.00000\t0.00000\n0.00000\t0.00000\t-1.00000\t-10.00000\n0.00000\t0.00000\t0.00000\t1.00000\n"
+                        },
+                        {
+                            "key": "projectionMatrix",
+                            "value": "0.11255\t0.00000\t0.00000\t0.00000\n0.00000\t0.20000\t0.00000\t0.00000\n0.00000\t0.00000\t-0.00200\t-1.00060\n0.00000\t0.00000\t0.00000\t1.00000\n"
+                        },
+                        {
+                            "key": "nonJitteredProjectionMatrix",
+                            "value": "0.11255\t0.00000\t0.00000\t0.00000\n0.00000\t0.20000\t0.00000\t0.00000\n0.00000\t0.00000\t-0.00200\t-1.00060\n0.00000\t0.00000\t0.00000\t1.00000\n"
+                        },
+                        {
+                            "key": "useJitteredProjectionMatrixForTransparentRendering",
+                            "value": "True"
+                        },
+                        {
+                            "key": "previousViewProjectionMatrix",
+                            "value": "0.11255\t0.00000\t0.00000\t0.00000\n0.00000\t-0.20000\t0.00000\t0.00000\n0.00000\t0.00000\t-0.00100\t0.99030\n0.00000\t0.00000\t0.00000\t1.00000\n"
+                        },
+                        {
+                            "key": "scene",
+                            "value": "UnityEngine.SceneManagement.Scene"
+                        },
+                        {
+                            "key": "stereoEnabled",
+                            "value": "False"
+                        },
+                        {
+                            "key": "stereoSeparation",
+                            "value": "0.022"
+                        },
+                        {
+                            "key": "stereoConvergence",
+                            "value": "10"
+                        },
+                        {
+                            "key": "areVRStereoViewMatricesWithinSingleCullTolerance",
+                            "value": "False"
+                        },
+                        {
+                            "key": "stereoTargetEye",
+                            "value": "None"
+                        },
+                        {
+                            "key": "stereoActiveEye",
+                            "value": "Mono"
+                        },
+                        {
+                            "key": "sceneViewFilterMode",
+                            "value": "Off"
+                        },
+                        {
+                            "key": "renderCloudsInSceneView",
+                            "value": "True"
+                        },
+                        {
+                            "key": "commandBufferCount",
+                            "value": "0"
+                        },
+                        {
+                            "key": "isOrthoGraphic",
+                            "value": "False"
+                        },
+                        {
+                            "key": "near",
+                            "value": "0.3"
+                        },
+                        {
+                            "key": "far",
+                            "value": "1000"
+                        },
+                        {
+                            "key": "fov",
+                            "value": "34"
+                        },
+                        {
+                            "key": "hdr",
+                            "value": "True"
+                        },
+                        {
+                            "key": "stereoMirrorMode",
+                            "value": "False"
+                        },
+                        {
+                            "key": "enabled",
+                            "value": "True"
+                        },
+                        {
+                            "key": "isActiveAndEnabled",
+                            "value": "True"
+                        },
+                        {
+                            "key": "orthographic",
+                            "value": "True"
+                        },
+                        {
+                            "key": "orthographicSize",
+                            "value": "5.00"
+                        },
+                        {
+                            "key": "fieldOfView",
+                            "value": "34.00"
+                        },
+                        {
+                            "key": "nearClipPlane",
+                            "value": "0.30"
+                        },
+                        {
+                            "key": "farClipPlane",
+                            "value": "1000.00"
+                        },
+                        {
+                            "key": "depth",
+                            "value": "-1.00"
+                        },
+                        {
+                            "key": "cullingMask",
+                            "value": "-1"
+                        }
+                    ],
+                    "references": []
+                },
+                {
+                    "type": "UnityEngine.AudioListener",
+                    "fields": [
+                        {
+                            "key": "velocityUpdateMode",
+                            "value": "Dynamic"
+                        },
+                        {
+                            "key": "enabled",
+                            "value": "True"
+                        },
+                        {
+                            "key": "isActiveAndEnabled",
+                            "value": "True"
+                        }
+                    ],
+                    "references": []
+                },
+                {
+                    "type": "UnityEngine.Rendering.Universal.UniversalAdditionalCameraData",
+                    "fields": [
+                        {
+                            "key": "version",
+                            "value": "2"
+                        },
+                        {
+                            "key": "renderShadows",
+                            "value": "True"
+                        },
+                        {
+                            "key": "requiresDepthOption",
+                            "value": "UsePipelineSettings"
+                        },
+                        {
+                            "key": "requiresColorOption",
+                            "value": "UsePipelineSettings"
+                        },
+                        {
+                            "key": "renderType",
+                            "value": "Base"
+                        },
+                        {
+                            "key": "cameraStack",
+                            "value": "System.Collections.Generic.List`1[UnityEngine.Camera]"
+                        },
+                        {
+                            "key": "clearDepth",
+                            "value": "True"
+                        },
+                        {
+                            "key": "requiresDepthTexture",
+                            "value": "False"
+                        },
+                        {
+                            "key": "requiresColorTexture",
+                            "value": "False"
+                        },
+                        {
+                            "key": "scriptableRenderer",
+                            "value": "UnityEngine.Rendering.Universal.Renderer2D"
+                        },
+                        {
+                            "key": "volumeLayerMask",
+                            "value": "UnityEngine.LayerMask"
+                        },
+                        {
+                            "key": "volumeTrigger",
+                            "value": "null"
+                        },
+                        {
+                            "key": "requiresVolumeFrameworkUpdate",
+                            "value": "True"
+                        },
+                        {
+                            "key": "volumeStack",
+                            "value": "null"
+                        },
+                        {
+                            "key": "renderPostProcessing",
+                            "value": "False"
+                        },
+                        {
+                            "key": "antialiasing",
+                            "value": "None"
+                        },
+                        {
+                            "key": "antialiasingQuality",
+                            "value": "High"
+                        },
+                        {
+                            "key": "history",
+                            "value": "UnityEngine.Rendering.Universal.UniversalCameraHistory"
+                        },
+                        {
+                            "key": "resetHistory",
+                            "value": "False"
+                        },
+                        {
+                            "key": "stopNaN",
+                            "value": "False"
+                        },
+                        {
+                            "key": "dithering",
+                            "value": "False"
+                        },
+                        {
+                            "key": "allowXRRendering",
+                            "value": "True"
+                        },
+                        {
+                            "key": "useScreenCoordOverride",
+                            "value": "False"
+                        },
+                        {
+                            "key": "screenSizeOverride",
+                            "value": "(0.00, 0.00, 0.00, 0.00)"
+                        },
+                        {
+                            "key": "screenCoordScaleBias",
+                            "value": "(0.00, 0.00, 0.00, 0.00)"
+                        },
+                        {
+                            "key": "allowHDROutput",
+                            "value": "True"
+                        },
+                        {
+                            "key": "destroyCancellationToken",
+                            "value": "System.Threading.CancellationToken"
+                        },
+                        {
+                            "key": "useGUILayout",
+                            "value": "True"
+                        },
+                        {
+                            "key": "didStart",
+                            "value": "True"
+                        },
+                        {
+                            "key": "didAwake",
+                            "value": "True"
+                        },
+                        {
+                            "key": "runInEditMode",
+                            "value": "True"
+                        },
+                        {
+                            "key": "enabled",
+                            "value": "True"
+                        },
+                        {
+                            "key": "isActiveAndEnabled",
+                            "value": "True"
+                        }
+                    ],
+                    "references": []
+                }
+            ],
+            "potentialIssues": []
+        },
+        {
+            "name": "Global Light 2D",
+            "path": "Global Light 2D",
+            "active": true,
+            "parent": "",
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "childCount": 0,
+            "siblingIndex": 1,
+            "components": [
+                {
+                    "type": "UnityEngine.Transform",
+                    "fields": [
+                        {
+                            "key": "parent",
+                            "value": "null"
+                        },
+                        {
+                            "key": "root",
+                            "value": "Global Light 2D (UnityEngine.Transform)"
+                        },
+                        {
+                            "key": "childCount",
+                            "value": "0"
+                        }
+                    ],
+                    "references": []
+                },
+                {
+                    "type": "UnityEngine.Rendering.Universal.Light2D",
+                    "fields": [
+                        {
+                            "key": "lightType",
+                            "value": "Global"
+                        },
+                        {
+                            "key": "blendStyleIndex",
+                            "value": "0"
+                        },
+                        {
+                            "key": "shadowIntensity",
+                            "value": "0.75"
+                        },
+                        {
+                            "key": "shadowSoftness",
+                            "value": "0"
+                        },
+                        {
+                            "key": "shadowsEnabled",
+                            "value": "False"
+                        },
+                        {
+                            "key": "shadowVolumeIntensity",
+                            "value": "0.75"
+                        },
+                        {
+                            "key": "volumetricShadowsEnabled",
+                            "value": "False"
+                        },
+                        {
+                            "key": "color",
+                            "value": "RGBA(1.000, 1.000, 1.000, 1.000)"
+                        },
+                        {
+                            "key": "intensity",
+                            "value": "1"
+                        },
+                        {
+                            "key": "volumeOpacity",
+                            "value": "1"
+                        },
+                        {
+                            "key": "volumeIntensity",
+                            "value": "1"
+                        },
+                        {
+                            "key": "volumeIntensityEnabled",
+                            "value": "False"
+                        },
+                        {
+                            "key": "volumetricEnabled",
+                            "value": "False"
+                        },
+                        {
+                            "key": "lightCookieSprite",
+                            "value": "null"
+                        },
+                        {
+                            "key": "falloffIntensity",
+                            "value": "0.5"
+                        },
+                        {
+                            "key": "shadowSoftnessFalloffIntensity",
+                            "value": "0.5"
+                        },
+                        {
+                            "key": "alphaBlendOnOverlap",
+                            "value": "False"
+                        },
+                        {
+                            "key": "overlapOperation",
+                            "value": "Additive"
+                        },
+                        {
+                            "key": "lightOrder",
+                            "value": "0"
+                        },
+                        {
+                            "key": "normalMapDistance",
+                            "value": "3"
+                        },
+                        {
+                            "key": "normalMapQuality",
+                            "value": "Disabled"
+                        },
+                        {
+                            "key": "renderVolumetricShadows",
+                            "value": "False"
+                        },
+                        {
+                            "key": "pointLightInnerAngle",
+                            "value": "360"
+                        },
+                        {
+                            "key": "pointLightOuterAngle",
+                            "value": "360"
+                        },
+                        {
+                            "key": "pointLightInnerRadius",
+                            "value": "0"
+                        },
+                        {
+                            "key": "pointLightOuterRadius",
+                            "value": "1"
+                        },
+                        {
+                            "key": "pointLightDistance",
+                            "value": "3"
+                        },
+                        {
+                            "key": "pointLightQuality",
+                            "value": "Disabled"
+                        },
+                        {
+                            "key": "shapeLightParametricSides",
+                            "value": "5"
+                        },
+                        {
+                            "key": "shapeLightParametricAngleOffset",
+                            "value": "0"
+                        },
+                        {
+                            "key": "shapeLightParametricRadius",
+                            "value": "1"
+                        },
+                        {
+                            "key": "shapeLightFalloffSize",
+                            "value": "0.5"
+                        },
+                        {
+                            "key": "shapePath",
+                            "value": "UnityEngine.Vector3[]"
+                        },
+                        {
+                            "key": "destroyCancellationToken",
+                            "value": "System.Threading.CancellationToken"
+                        },
+                        {
+                            "key": "useGUILayout",
+                            "value": "True"
+                        },
+                        {
+                            "key": "didStart",
+                            "value": "True"
+                        },
+                        {
+                            "key": "didAwake",
+                            "value": "True"
+                        },
+                        {
+                            "key": "runInEditMode",
+                            "value": "True"
+                        },
+                        {
+                            "key": "enabled",
+                            "value": "True"
+                        },
+                        {
+                            "key": "isActiveAndEnabled",
+                            "value": "True"
+                        }
+                    ],
+                    "references": []
+                }
+            ],
+            "potentialIssues": []
+        }
+    ],
+    "summary": {
+        "activeScene": "SampleScene",
+        "usingNewInputSystem": true,
+        "potentialIssues": [],
+        "projectSettings": {
+            "input": {
+                "activeInputHandlingNewSystem": true,
+                "backButtonLeavesApp": false,
+                "enableIMEComposition": false
+            },
+            "physics": {
+                "auto2DSyncTransforms": false,
+                "defaultContactOffset": 0.0,
+                "velocityIterations": 8,
+                "positionIterations": 3,
+                "queriesHitTriggers": true
+            },
+            "rendering": {
+                "pipelineAsset": "UniversalRP",
+                "useSRP": true,
+                "colorSpace": "Linear"
+            },
+            "unityVersion": "6000.0.50f1",
+            "build": {
+                "activeBuildTarget": "StandaloneWindows64",
+                "scenes": [
+                    "Assets/Scenes/SampleScene.unity"
+                ]
+            }
+        }
+    }
+}
