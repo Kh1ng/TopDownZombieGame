@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class MeshVisualizer : MonoBehaviour
 {
@@ -6,24 +7,38 @@ public class MeshVisualizer : MonoBehaviour
     [SerializeField] private int spritesheetColumns = 2;
     [SerializeField] private int spritesheetRows = 3;
     
-    // Body sprite (first column, first row)
+    // Body sprite settings
     [SerializeField] private int bodyColumnIndex = 0;
     [SerializeField] private int bodyRowIndex = 0;
     [SerializeField] private float bodyWidth = 1f;
     [SerializeField] private float bodyHeight = 1f;
     
-    // Head sprite (second column, first row)
+    // Head sprite settings
     [SerializeField] private int headColumnIndex = 1;
     [SerializeField] private int headRowIndex = 0;
     [SerializeField] private float headWidth = 1f;
     [SerializeField] private float headHeight = 1f;
-    [SerializeField] private Vector3 headOffset = new Vector3(0f, 0.8f, 0f); // Adjust this to position the head
+    [SerializeField] private Vector3 headOffset = new Vector3(0f, 0.8f, 0f);
     
-    // Reference to store created meshes
+    // Animation variables
+    [SerializeField] private float frameRate = 10f;
+    private float frameTimer = 0f;
+    private int currentFrame = 0;
+    private bool isAnimating = false;
+    private List<Vector2Int> bodyFrames = new List<Vector2Int>();
+    private List<Vector2Int> headFrames = new List<Vector2Int>();
+    
+    // References
     private MeshFilter bodyMeshFilter;
     private MeshFilter headMeshFilter;
     private GameObject headObject;
+    private bool isFlipped = false;
 
+    // Direction constants
+    public static readonly Vector2Int SOUTH = new Vector2Int(0, 0);
+    public static readonly Vector2Int EAST = new Vector2Int(0, 1);
+    public static readonly Vector2Int NORTH = new Vector2Int(0, 2);
+    
     void Start()
     {
         Debug.Log("MeshRenderer Start");
@@ -63,6 +78,110 @@ public class MeshVisualizer : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        // Handle animation if we're animating
+        if (isAnimating && bodyFrames.Count > 0)
+        {
+            frameTimer += Time.deltaTime;
+            if (frameTimer >= 1f / frameRate)
+            {
+                frameTimer = 0f;
+                currentFrame = (currentFrame + 1) % bodyFrames.Count;
+                
+                // Update the sprite cells
+                Vector2Int bodyFrame = bodyFrames[currentFrame];
+                Vector2Int headFrame = headFrames[currentFrame];
+                
+                SetBodySpriteCell(bodyFrame.x, bodyFrame.y);
+                SetHeadSpriteCell(headFrame.x, headFrame.y);
+            }
+        }
+    }
+    
+    // Set up animation frames for a specific direction
+    public void SetupDirectionalAnimation(Vector2 direction)
+    {
+        // Clear previous animation
+        bodyFrames.Clear();
+        headFrames.Clear();
+        currentFrame = 0;
+        frameTimer = 0f;
+        
+        // Determine which direction based on input
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        {
+            if (direction.x > 0)
+            {
+                // East/right animation
+                SetupEastAnimation(false);
+            }
+            else
+            {
+                // West/left animation (flipped East)
+                SetupEastAnimation(true);
+            }
+        }
+        else
+        {
+            if (direction.y > 0)
+            {
+                // North/up animation
+                SetupNorthAnimation();
+            }
+            else
+            {
+                // South/down animation
+                SetupSouthAnimation();
+            }
+        }
+        
+        isAnimating = bodyFrames.Count > 0;
+    }
+    
+    private void SetupSouthAnimation()
+    {
+        // For walking south animation
+        FlipSprites(false); // Reset flip
+        
+        // If you have multiple frames for walking, add them here
+        // For now, we'll just use the single South frame
+        bodyFrames.Add(new Vector2Int(0, 0));  // Body south frame
+        headFrames.Add(new Vector2Int(1, 0));  // Head south frame
+        
+        // Apply the first frame immediately
+        SetBodySpriteCell(0, 0);
+        SetHeadSpriteCell(1, 0);
+    }
+    
+    private void SetupEastAnimation(bool flip)
+    {
+        // For walking east/west animation
+        FlipSprites(flip);
+        
+        // Add animation frames
+        bodyFrames.Add(new Vector2Int(0, 1));  // Body east frame
+        headFrames.Add(new Vector2Int(1, 1));  // Head east frame
+        
+        // Apply the first frame immediately
+        SetBodySpriteCell(0, 1);
+        SetHeadSpriteCell(1, 1);
+    }
+    
+    private void SetupNorthAnimation()
+    {
+        // For walking north animation
+        FlipSprites(false); // Reset flip
+        
+        // Add animation frames
+        bodyFrames.Add(new Vector2Int(0, 2));  // Body north frame
+        headFrames.Add(new Vector2Int(1, 2));  // Head north frame
+        
+        // Apply the first frame immediately
+        SetBodySpriteCell(0, 2);
+        SetHeadSpriteCell(1, 2);
+    }
+    
     private Mesh CreateMesh(float width, float height, int columnIndex, int rowIndex)
     {
         Mesh mesh = new Mesh();
@@ -151,5 +270,55 @@ public class MeshVisualizer : MonoBehaviour
         headOffset = offset;
         if (headObject)
             headObject.transform.localPosition = headOffset;
+    }
+
+    public void FlipSprites(bool flip)
+    {
+        // Only proceed if the flip state is changing
+        if (isFlipped == flip) return;
+        
+        isFlipped = flip;
+        
+        // Adjust the body mesh vertices instead of scaling
+        if (bodyMeshFilter && bodyMeshFilter.mesh)
+        {
+            Mesh mesh = bodyMeshFilter.mesh;
+            Vector3[] vertices = mesh.vertices;
+            
+            for (int i = 0; i < vertices.Length; i++)
+            {
+                // Flip around the center of the mesh
+                vertices[i].x = bodyWidth - vertices[i].x;
+            }
+            
+            mesh.vertices = vertices;
+            mesh.RecalculateBounds();
+        }
+        
+        // Do the same for the head mesh
+        if (headMeshFilter && headMeshFilter.mesh)
+        {
+            Mesh mesh = headMeshFilter.mesh;
+            Vector3[] vertices = mesh.vertices;
+            
+            for (int i = 0; i < vertices.Length; i++)
+            {
+                // Flip around the center of the mesh
+                vertices[i].x = headWidth - vertices[i].x;
+            }
+            
+            mesh.vertices = vertices;
+            mesh.RecalculateBounds();
+            
+            // Adjust head position
+            Vector3 headPos = headObject.transform.localPosition;
+            headPos.x = flip ? -headOffset.x : headOffset.x;
+            headObject.transform.localPosition = headPos;
+        }
+    }
+    
+    public bool IsFlipped()
+    {
+        return isFlipped;
     }
 }

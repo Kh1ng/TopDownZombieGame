@@ -274,7 +274,7 @@
                     "fields": [
                         {
                             "key": "sharedMesh",
-                            "value": "Testing (UnityEngine.Mesh)"
+                            "value": "Character (UnityEngine.Mesh)"
                         },
                         {
                             "key": "mesh",
@@ -482,11 +482,11 @@
                         },
                         {
                             "key": "material",
-                            "value": "Spritesheet (Instance) (Instance) (UnityEngine.Material)"
+                            "value": "Spritesheet (Instance) (Instance) (Instance) (UnityEngine.Material)"
                         },
                         {
                             "key": "sharedMaterial",
-                            "value": "Spritesheet (Instance) (Instance) (UnityEngine.Material)"
+                            "value": "Spritesheet (Instance) (Instance) (Instance) (UnityEngine.Material)"
                         },
                         {
                             "key": "sharedMaterials",
@@ -652,6 +652,212 @@
                         }
                     ],
                     "references": []
+                },
+                {
+                    "type": "UnityEngine.Animator",
+                    "fields": [
+                        {
+                            "key": "isOptimizable",
+                            "value": "False"
+                        },
+                        {
+                            "key": "isHuman",
+                            "value": "False"
+                        },
+                        {
+                            "key": "hasRootMotion",
+                            "value": "False"
+                        },
+                        {
+                            "key": "humanScale",
+                            "value": "1"
+                        },
+                        {
+                            "key": "isInitialized",
+                            "value": "True"
+                        },
+                        {
+                            "key": "deltaPosition",
+                            "value": "(0.00, 0.00, 0.00)"
+                        },
+                        {
+                            "key": "deltaRotation",
+                            "value": "(0.00000, 0.00000, 0.00000, 1.00000)"
+                        },
+                        {
+                            "key": "velocity",
+                            "value": "(0.00, 0.00, 0.00)"
+                        },
+                        {
+                            "key": "angularVelocity",
+                            "value": "(0.00, 0.00, 0.00)"
+                        },
+                        {
+                            "key": "rootPosition",
+                            "value": "(-4.13, 0.17, 0.09)"
+                        },
+                        {
+                            "key": "rootRotation",
+                            "value": "(0.00000, 0.00000, 0.00000, 1.00000)"
+                        },
+                        {
+                            "key": "applyRootMotion",
+                            "value": "False"
+                        },
+                        {
+                            "key": "linearVelocityBlending",
+                            "value": "False"
+                        },
+                        {
+                            "key": "animatePhysics",
+                            "value": "False"
+                        },
+                        {
+                            "key": "updateMode",
+                            "value": "Normal"
+                        },
+                        {
+                            "key": "hasTransformHierarchy",
+                            "value": "True"
+                        },
+                        {
+                            "key": "gravityWeight",
+                            "value": "0"
+                        },
+                        {
+                            "key": "bodyPosition",
+                            "value": "(0.00, 0.00, 0.00)"
+                        },
+                        {
+                            "key": "bodyRotation",
+                            "value": "(0.00000, 0.00000, 0.00000, 0.00000)"
+                        },
+                        {
+                            "key": "stabilizeFeet",
+                            "value": "False"
+                        },
+                        {
+                            "key": "layerCount",
+                            "value": "1"
+                        },
+                        {
+                            "key": "parameters",
+                            "value": "UnityEngine.AnimatorControllerParameter[]"
+                        },
+                        {
+                            "key": "parameterCount",
+                            "value": "3"
+                        },
+                        {
+                            "key": "feetPivotActive",
+                            "value": "1"
+                        },
+                        {
+                            "key": "pivotWeight",
+                            "value": "0.5"
+                        },
+                        {
+                            "key": "pivotPosition",
+                            "value": "(0.00, 0.00, 0.00)"
+                        },
+                        {
+                            "key": "isMatchingTarget",
+                            "value": "False"
+                        },
+                        {
+                            "key": "speed",
+                            "value": "1"
+                        },
+                        {
+                            "key": "targetPosition",
+                            "value": "(0.00, 0.00, 0.00)"
+                        },
+                        {
+                            "key": "targetRotation",
+                            "value": "(0.00000, 0.00000, 0.00000, 1.00000)"
+                        },
+                        {
+                            "key": "avatarRoot",
+                            "value": "Character (UnityEngine.Transform)"
+                        },
+                        {
+                            "key": "cullingMode",
+                            "value": "AlwaysAnimate"
+                        },
+                        {
+                            "key": "playbackTime",
+                            "value": "-1"
+                        },
+                        {
+                            "key": "recorderStartTime",
+                            "value": "-1"
+                        },
+                        {
+                            "key": "recorderStopTime",
+                            "value": "-1"
+                        },
+                        {
+                            "key": "recorderMode",
+                            "value": "Offline"
+                        },
+                        {
+                            "key": "runtimeAnimatorController",
+                            "value": "Character_Movement (UnityEngine.AnimatorController)"
+                        },
+                        {
+                            "key": "hasBoundPlayables",
+                            "value": "True"
+                        },
+                        {
+                            "key": "avatar",
+                            "value": "null"
+                        },
+                        {
+                            "key": "playableGraph",
+                            "value": "UnityEngine.Playables.PlayableGraph"
+                        },
+                        {
+                            "key": "layersAffectMassCenter",
+                            "value": "False"
+                        },
+                        {
+                            "key": "leftFeetBottomHeight",
+                            "value": "0"
+                        },
+                        {
+                            "key": "rightFeetBottomHeight",
+                            "value": "0"
+                        },
+                        {
+                            "key": "logWarnings",
+                            "value": "True"
+                        },
+                        {
+                            "key": "fireEvents",
+                            "value": "True"
+                        },
+                        {
+                            "key": "keepAnimatorControllerStateOnDisable",
+                            "value": "False"
+                        },
+                        {
+                            "key": "keepAnimatorStateOnDisable",
+                            "value": "False"
+                        },
+                        {
+                            "key": "writeDefaultValuesOnDisable",
+                            "value": "False"
+                        },
+                        {
+                            "key": "enabled",
+                            "value": "True"
+                        },
+                        {
+                            "key": "isActiveAndEnabled",
+                            "value": "True"
+                        }
+                    ],
+                    "references": []
                 }
             ],
             "potentialIssues": []
@@ -750,7 +956,7 @@
                         },
                         {
                             "key": "aspect",
-                            "value": "1.776995"
+                            "value": "1.7795"
                         },
                         {
                             "key": "velocity",
@@ -786,7 +992,7 @@
                         },
                         {
                             "key": "cullingMatrix",
-                            "value": "0.11255\t0.00000\t0.00000\t0.00000\n0.00000\t0.20000\t0.00000\t0.00000\n0.00000\t0.00000\t0.00200\t-0.98059\n0.00000\t0.00000\t0.00000\t1.00000\n"
+                            "value": "0.11239\t0.00000\t0.00000\t0.00000\n0.00000\t0.20000\t0.00000\t0.00000\n0.00000\t0.00000\t0.00200\t-0.98059\n0.00000\t0.00000\t0.00000\t1.00000\n"
                         },
                         {
                             "key": "backgroundColor",
@@ -862,23 +1068,23 @@
                         },
                         {
                             "key": "pixelRect",
-                            "value": "(x:0.00, y:0.00, width:504.67, height:284.00)"
+                            "value": "(x:0.00, y:0.00, width:688.67, height:387.00)"
                         },
                         {
                             "key": "pixelWidth",
-                            "value": "505"
+                            "value": "689"
                         },
                         {
                             "key": "pixelHeight",
-                            "value": "284"
+                            "value": "387"
                         },
                         {
                             "key": "scaledPixelWidth",
-                            "value": "505"
+                            "value": "689"
                         },
                         {
                             "key": "scaledPixelHeight",
-                            "value": "284"
+                            "value": "387"
                         },
                         {
                             "key": "targetTexture",
@@ -902,11 +1108,11 @@
                         },
                         {
                             "key": "projectionMatrix",
-                            "value": "0.11255\t0.00000\t0.00000\t0.00000\n0.00000\t0.20000\t0.00000\t0.00000\n0.00000\t0.00000\t-0.00200\t-1.00060\n0.00000\t0.00000\t0.00000\t1.00000\n"
+                            "value": "0.11239\t0.00000\t0.00000\t0.00000\n0.00000\t0.20000\t0.00000\t0.00000\n0.00000\t0.00000\t-0.00200\t-1.00060\n0.00000\t0.00000\t0.00000\t1.00000\n"
                         },
                         {
                             "key": "nonJitteredProjectionMatrix",
-                            "value": "0.11255\t0.00000\t0.00000\t0.00000\n0.00000\t0.20000\t0.00000\t0.00000\n0.00000\t0.00000\t-0.00200\t-1.00060\n0.00000\t0.00000\t0.00000\t1.00000\n"
+                            "value": "0.11239\t0.00000\t0.00000\t0.00000\n0.00000\t0.20000\t0.00000\t0.00000\n0.00000\t0.00000\t-0.00200\t-1.00060\n0.00000\t0.00000\t0.00000\t1.00000\n"
                         },
                         {
                             "key": "useJitteredProjectionMatrixForTransparentRendering",
@@ -914,7 +1120,7 @@
                         },
                         {
                             "key": "previousViewProjectionMatrix",
-                            "value": "0.11255\t0.00000\t0.00000\t0.00000\n0.00000\t-0.20000\t0.00000\t0.00000\n0.00000\t0.00000\t-0.00100\t0.99030\n0.00000\t0.00000\t0.00000\t1.00000\n"
+                            "value": "0.11239\t0.00000\t0.00000\t0.00000\n0.00000\t-0.20000\t0.00000\t0.00000\n0.00000\t0.00000\t-0.00100\t0.99030\n0.00000\t0.00000\t0.00000\t1.00000\n"
                         },
                         {
                             "key": "scene",

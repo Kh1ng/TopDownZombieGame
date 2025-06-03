@@ -4,145 +4,104 @@ public class CharacterMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Vector2 movement;
+    private Vector2 lastDirection = Vector2.down;
+    
     [SerializeField] private float moveSpeed = 5f;
     
-    // Add Animator reference alongside MeshVisualizer
-    private Animator animator;
     private MeshVisualizer meshVisualizer;
     
-    // Add variables to track the current visual direction
-    private Vector2 lastDirection = Vector2.down; // Default facing down
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
         meshVisualizer = GetComponent<MeshVisualizer>();
         
-        // If we couldn't find it on this GameObject, try looking for it in children
         if (meshVisualizer == null)
-        {
             meshVisualizer = GetComponentInChildren<MeshVisualizer>();
+    }
+
+    void Update()
+    {
+        HandleInput();
+    }
+    
+    void FixedUpdate()
+    {
+        // Apply movement to rigidbody
+        if (movement.sqrMagnitude > 0)
+        {
+            rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void HandleInput()
     {
         // Get input
-        movement.x = Input.GetAxisRaw("Horizontal"); // A/D or Left/Right
-        movement.y = Input.GetAxisRaw("Vertical");   // W/S or Up/Down
+        Vector2 previousMovement = movement;
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
         
-        // Update animator parameters
-        if (animator != null)
+        if (movement.sqrMagnitude > 0.1f)
         {
-            animator.SetFloat("Horizontal", movement.x);
-            animator.SetFloat("Vertical", movement.y);
+            // We're moving - store direction and update animation
+            lastDirection = movement.normalized;
             
-            // Optional: Speed parameter for distinguishing idle vs. moving
-            float speed = movement.sqrMagnitude;
-            animator.SetFloat("Speed", speed);
+            // If direction changed, update animation
+            if (previousMovement != movement && meshVisualizer != null)
+            {
+                meshVisualizer.SetupDirectionalAnimation(movement);
+            }
         }
         else
         {
-            // Fallback to direct method if no animator
-            UpdateVisuals();
+            // Handle idle state - show static sprite based on last direction
+            if (previousMovement.sqrMagnitude > 0.1f && meshVisualizer != null)
+            {
+                // We just stopped moving - set up static pose
+                SetStaticDirection(lastDirection);
+            }
         }
-    }
-
-    // FixedUpdate is called at a fixed time interval and is used for physics calculations
-    void FixedUpdate()
-    {
-        HandleMovement();
-    }        
-    
-    private void HandleMovement()
-    {
-        rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
     }
     
-    // Keep this method as a fallback or for direct control
-    private void UpdateVisuals()
+    private void SetStaticDirection(Vector2 direction)
     {
-        if (meshVisualizer != null)
+        if (meshVisualizer == null) return;
+        
+        // Reset flip state
+        meshVisualizer.FlipSprites(false);
+        
+        // Determine which direction based on vector
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
-            // Store last non-zero direction for keeping the facing direction when idle
-            if (movement.x != 0 || movement.y != 0)
+            // Horizontal movement prioritized
+            if (direction.x > 0)
             {
-                lastDirection = new Vector2(movement.x, movement.y).normalized;
+                // Face right
+                meshVisualizer.SetBodySpriteCell(0, 1); // Body column 0, row 1 (East)
+                meshVisualizer.SetHeadSpriteCell(1, 1); // Head column 1, row 1 (East)
             }
-            
-            // Change the sprite based on direction
-            // Assuming your spritesheet is organized with:
-            // Column 0, Row 0: Body facing left
-            // Column 1, Row 0: Body facing right
-            // Column 0, Row 1: Body facing up
-            // Column 1, Row 1: Body facing down
-            
-            // Check horizontal direction first (takes priority)
-            if (lastDirection.x > 0.1f)
+            else
             {
-                // Facing right
-                meshVisualizer.SetBodySpriteCell(1, 0);
-                meshVisualizer.SetHeadSpriteCell(1, 0);
-            }
-            else if (lastDirection.x < -0.1f)
-            {
-                // Facing left
-                meshVisualizer.SetBodySpriteCell(0, 0);
-                meshVisualizer.SetHeadSpriteCell(0, 0);
-            }
-            // If not moving horizontally, check vertical
-            else if (lastDirection.y > 0.1f)
-            {
-                // Facing up
-                meshVisualizer.SetBodySpriteCell(0, 1);
-                meshVisualizer.SetHeadSpriteCell(0, 1);
-            }
-            else if (lastDirection.y < -0.1f)
-            {
-                // Facing down
-                meshVisualizer.SetBodySpriteCell(1, 1);
-                meshVisualizer.SetHeadSpriteCell(1, 1);
+                // Face left (flipped East)
+                meshVisualizer.SetBodySpriteCell(0, 1); // Body column 0, row 1 (East)
+                meshVisualizer.SetHeadSpriteCell(1, 1); // Head column 1, row 1 (East)
+                meshVisualizer.FlipSprites(true);       // Then flip
             }
         }
-    }
-
-    // Add these public methods to your CharacterMovement.cs
-    public void FaceDown()
-    {
-        if (meshVisualizer != null)
+        else
         {
-            meshVisualizer.SetBodySpriteCell(1, 1);
-            meshVisualizer.SetHeadSpriteCell(1, 1);
-        }
-    }
-
-    public void FaceUp()
-    {
-        if (meshVisualizer != null)
-        {
-            meshVisualizer.SetBodySpriteCell(0, 1);
-            meshVisualizer.SetHeadSpriteCell(0, 1);
-        }
-    }
-
-    public void FaceLeft()
-    {
-        if (meshVisualizer != null)
-        {
-            meshVisualizer.SetBodySpriteCell(0, 0);
-            meshVisualizer.SetHeadSpriteCell(0, 0);
-        }
-    }
-
-    public void FaceRight()
-    {
-        if (meshVisualizer != null)
-        {
-            meshVisualizer.SetBodySpriteCell(1, 0);
-            meshVisualizer.SetHeadSpriteCell(1, 0);
+            // Vertical movement prioritized
+            if (direction.y > 0)
+            {
+                // Face up
+                meshVisualizer.SetBodySpriteCell(0, 2); // Body column 0, row 2 (North) 
+                meshVisualizer.SetHeadSpriteCell(1, 2); // Head column 1, row 2 (North)
+            }
+            else
+            {
+                // Face down
+                meshVisualizer.SetBodySpriteCell(0, 0); // Body column 0, row 0 (South)
+                meshVisualizer.SetHeadSpriteCell(1, 0); // Head column 1, row 0 (South)
+            }
         }
     }
 }
