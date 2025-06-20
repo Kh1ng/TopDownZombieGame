@@ -50,13 +50,13 @@ public class CharacterMovement : MonoBehaviour
             {
                 meshVisualizer.SetupDirectionalAnimation(movement);
             }
-        }
-        else
+        }        else
         {
             // Handle idle state - show static sprite based on last direction
             if (previousMovement.sqrMagnitude > 0.1f && meshVisualizer != null)
             {
-                // We just stopped moving - set up static pose
+                // We just stopped moving - stop animation and set up static pose
+                meshVisualizer.StopWalking();
                 SetStaticDirection(lastDirection);
             }
         }

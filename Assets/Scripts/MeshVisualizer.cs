@@ -31,19 +31,34 @@ public class MeshVisualizer : MonoBehaviour
     private Vector3 originalHeadOffsetNorth;
     private Vector3 originalHeadOffsetEast;
     private Vector3 originalHeadOffsetWest;
-    
-    // Animation variables
+      // Animation variables
+    [Header("Animation Settings")]
     [SerializeField] private float frameRate = 10f;
+    [SerializeField] private bool enableWalkAnimation = true;
+    
     private float frameTimer = 0f;
     private int currentFrame = 0;
     private bool isAnimating = false;
+    private bool isWalking = false;
     private List<Vector2Int> bodyFrames = new List<Vector2Int>();
     private List<Vector2Int> headFrames = new List<Vector2Int>();
+      // Bounce animation variables
+    [Header("Bounce Animation")]
+    [SerializeField] private float bounceHeight = 0.1f;
+    [SerializeField] private float bounceSpeed = 10f;
     
-    // References
+    // Breathing animation variables
+    [Header("Breathing Animation")]
+    [SerializeField] private float breathingHeight = 0.02f;
+    [SerializeField] private float breathingSpeed = 2f;
+    [SerializeField] private bool enableBreathingAnimation = true;
+    
+    private Vector3 originalBodyPosition;
+      // References
     private MeshFilter bodyMeshFilter;
     private MeshFilter headMeshFilter;
     private GameObject headObject;
+    private GameObject visualContainer; // Container for visual bouncing
     private bool isFlipped = false;
 
     // Direction constants
@@ -53,32 +68,34 @@ public class MeshVisualizer : MonoBehaviour
     
     void Start()
     {
-        Debug.Log("MeshRenderer Start");
-
-        // Store the original head offset values from inspector
+        Debug.Log("MeshRenderer Start");        // Store the original head offset values from inspector
         originalHeadOffsetSouth = headOffsetSouth;
         originalHeadOffsetNorth = headOffsetNorth;
         originalHeadOffsetEast = headOffsetEast;
         originalHeadOffsetWest = headOffsetWest;
 
-        // Get or create MeshFilter for body
-        bodyMeshFilter = GetComponent<MeshFilter>();
+        // Create a visual container for bouncing effect
+        visualContainer = new GameObject("VisualContainer");
+        visualContainer.transform.SetParent(transform);
+        visualContainer.transform.localPosition = Vector3.zero;
+
+        // Get or create MeshFilter for body (attach to visual container)
+        bodyMeshFilter = visualContainer.GetComponent<MeshFilter>();
         if (bodyMeshFilter == null)
-            bodyMeshFilter = gameObject.AddComponent<MeshFilter>();
-            
-        // Set up body mesh
+            bodyMeshFilter = visualContainer.AddComponent<MeshFilter>();
+              // Set up body mesh
         Mesh bodyMesh = CreateMesh(bodyWidth, bodyHeight, bodyColumnIndex, bodyRowIndex);
         bodyMeshFilter.mesh = bodyMesh;
         
-        // Get or add MeshRenderer for body
-        MeshRenderer bodyRenderer = GetComponent<MeshRenderer>();
+        // Get or add MeshRenderer for body (attach to visual container)
+        MeshRenderer bodyRenderer = visualContainer.GetComponent<MeshRenderer>();
         if (bodyRenderer == null)
-            bodyRenderer = gameObject.AddComponent<MeshRenderer>();
+            bodyRenderer = visualContainer.AddComponent<MeshRenderer>();
         
-        // Create a child GameObject for the head
+        // Create a child GameObject for the head (child of visual container)
         headObject = new GameObject("Head");
-        headObject.transform.SetParent(transform);
-        headObject.transform.localPosition = headOffsetSouth; // Use the new variables
+        headObject.transform.SetParent(visualContainer.transform);
+        headObject.transform.localPosition = headOffsetSouth;
         
         // Add components to head
         headMeshFilter = headObject.AddComponent<MeshFilter>();
@@ -87,17 +104,44 @@ public class MeshVisualizer : MonoBehaviour
         // Set up head mesh
         Mesh headMesh = CreateMesh(headWidth, headHeight, headColumnIndex, headRowIndex);
         headMeshFilter.mesh = headMesh;
-        
-        // Assign material to both renderers
+          // Assign material to both renderers
         if (spritesheetMaterial != null)
         {
             bodyRenderer.material = spritesheetMaterial;
-            headRenderer.material = spritesheetMaterial;
-        }
-    }
-
-    void Update()
+            headRenderer.material = spritesheetMaterial;        }
+        
+        // Store original position for bounce animation (visual container position)
+        originalBodyPosition = visualContainer.transform.localPosition;
+    }    void Update()
     {
+        // Animation logic for visual container
+        if (visualContainer != null)
+        {
+            if (isWalking && enableWalkAnimation)
+            {
+                // Walking bounce animation
+                float bounce = Mathf.Sin(Time.time * bounceSpeed) * bounceHeight;
+                
+                Vector3 visualPos = originalBodyPosition;
+                visualPos.y += bounce;
+                visualContainer.transform.localPosition = visualPos;
+            }
+            else if (enableBreathingAnimation)
+            {
+                // Idle breathing animation
+                float breathing = Mathf.Sin(Time.time * breathingSpeed) * breathingHeight;
+                
+                Vector3 visualPos = originalBodyPosition;
+                visualPos.y += breathing;
+                visualContainer.transform.localPosition = visualPos;
+            }
+            else
+            {
+                // No animation - return to original position
+                visualContainer.transform.localPosition = originalBodyPosition;
+            }
+        }
+        
         // Handle animation if we're animating
         if (isAnimating && bodyFrames.Count > 0)
         {
@@ -176,10 +220,11 @@ public class MeshVisualizer : MonoBehaviour
             {
                 // South/down animation
                 SetupSouthAnimation();
-            }
-        }
+            }        }
         
-        isAnimating = bodyFrames.Count > 0;
+        // Start walking animation
+        isWalking = true;
+        isAnimating = enableWalkAnimation && bodyFrames.Count > 1;
     }
     
     private void SetupSouthAnimation()
@@ -395,5 +440,19 @@ public class MeshVisualizer : MonoBehaviour
         
         // Note: Head position is now handled by SetHeadPositionForDirection()
         // so we don't need to adjust position here anymore
+    }
+    
+    // Call this when character stops moving
+    public void StopWalking()
+    {
+        isWalking = false;
+        isAnimating = false;
+        
+        // Set to idle frame (first frame of current direction)
+        if (bodyFrames.Count > 0)
+        {
+            SetBodySpriteCell(bodyFrames[0].x, bodyFrames[0].y);
+            SetHeadSpriteCell(headFrames[0].x, headFrames[0].y);
+        }
     }
 }

@@ -259,7 +259,8 @@ MonoBehaviour:
   headRowIndex: 0
   headWidth: 2
   headHeight: 2
-  headOffset: {x: 0.175, y: 0.33, z: 0}
+  headOffset: {x: -0.11, y: 0.33, z: 0}
+  headFlipOffset: 0.1
   frameRate: 10
 --- !u!33 &420549552
 MeshFilter:
