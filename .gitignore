@@ -71,3 +71,7 @@ sysinfo.txt
 
 # === VS Code workspace === #
 *.code-workspace
+Assets/Scenes/SampleScene.unity
+*.meta
+*.unity
+Assets/Scenes/SampleScene.unity

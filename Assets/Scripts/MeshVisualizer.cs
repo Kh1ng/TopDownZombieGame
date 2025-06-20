@@ -25,35 +25,11 @@ public class MeshVisualizer : MonoBehaviour
     [SerializeField] private Vector3 headOffsetNorth = new Vector3(-0.11f, 0.8f, 0.1f);   // Up (behind body)
     [SerializeField] private Vector3 headOffsetEast = new Vector3(-0.11f, 0.8f, -0.1f);   // Right
     [SerializeField] private Vector3 headOffsetWest = new Vector3(0.0f, 0.8f, -0.1f);     // Left (flipped right)
-    
-    // Store the original values
+      // Store the original values
     private Vector3 originalHeadOffsetSouth;
     private Vector3 originalHeadOffsetNorth;
     private Vector3 originalHeadOffsetEast;
     private Vector3 originalHeadOffsetWest;
-      // Animation variables
-    [Header("Animation Settings")]
-    [SerializeField] private float frameRate = 10f;
-    [SerializeField] private bool enableWalkAnimation = true;
-    
-    private float frameTimer = 0f;
-    private int currentFrame = 0;
-    private bool isAnimating = false;
-    private bool isWalking = false;
-    private List<Vector2Int> bodyFrames = new List<Vector2Int>();
-    private List<Vector2Int> headFrames = new List<Vector2Int>();
-      // Bounce animation variables
-    [Header("Bounce Animation")]
-    [SerializeField] private float bounceHeight = 0.1f;
-    [SerializeField] private float bounceSpeed = 10f;
-    
-    // Breathing animation variables
-    [Header("Breathing Animation")]
-    [SerializeField] private float breathingHeight = 0.02f;
-    [SerializeField] private float breathingSpeed = 2f;
-    [SerializeField] private bool enableBreathingAnimation = true;
-    
-    private Vector3 originalBodyPosition;
       // References
     private MeshFilter bodyMeshFilter;
     private MeshFilter headMeshFilter;
@@ -64,20 +40,33 @@ public class MeshVisualizer : MonoBehaviour
     // Direction constants
     public static readonly Vector2Int SOUTH = new Vector2Int(0, 0);
     public static readonly Vector2Int EAST = new Vector2Int(0, 1);
-    public static readonly Vector2Int NORTH = new Vector2Int(0, 2);
+    public static readonly Vector2Int NORTH = new Vector2Int(0, 2);    void Awake()
+    {
+        Debug.Log("MeshVisualizer Awake - Creating visual container");
+        
+        // Create a visual container for bouncing effect
+        if (visualContainer == null)
+        {
+            visualContainer = new GameObject("VisualContainer");
+            visualContainer.transform.SetParent(transform);
+            visualContainer.transform.localPosition = Vector3.zero;
+            
+            // Hide from Inspector to prevent serialization issues
+            visualContainer.hideFlags = HideFlags.DontSaveInEditor;
+            
+            Debug.Log("Visual container created: " + visualContainer.name);
+        }
+    }
     
     void Start()
     {
-        Debug.Log("MeshRenderer Start");        // Store the original head offset values from inspector
+        Debug.Log("MeshVisualizer Start");
+        
+        // Store the original head offset values from inspector
         originalHeadOffsetSouth = headOffsetSouth;
         originalHeadOffsetNorth = headOffsetNorth;
         originalHeadOffsetEast = headOffsetEast;
         originalHeadOffsetWest = headOffsetWest;
-
-        // Create a visual container for bouncing effect
-        visualContainer = new GameObject("VisualContainer");
-        visualContainer.transform.SetParent(transform);
-        visualContainer.transform.localPosition = Vector3.zero;
 
         // Get or create MeshFilter for body (attach to visual container)
         bodyMeshFilter = visualContainer.GetComponent<MeshFilter>();
@@ -91,11 +80,13 @@ public class MeshVisualizer : MonoBehaviour
         MeshRenderer bodyRenderer = visualContainer.GetComponent<MeshRenderer>();
         if (bodyRenderer == null)
             bodyRenderer = visualContainer.AddComponent<MeshRenderer>();
-        
-        // Create a child GameObject for the head (child of visual container)
+          // Create a child GameObject for the head (child of visual container)
         headObject = new GameObject("Head");
         headObject.transform.SetParent(visualContainer.transform);
         headObject.transform.localPosition = headOffsetSouth;
+        
+        // Hide from Inspector to prevent serialization issues
+        headObject.hideFlags = HideFlags.DontSaveInEditor;
         
         // Add components to head
         headMeshFilter = headObject.AddComponent<MeshFilter>();
@@ -111,54 +102,11 @@ public class MeshVisualizer : MonoBehaviour
             headRenderer.material = spritesheetMaterial;        }
         
         // Store original position for bounce animation (visual container position)
-        originalBodyPosition = visualContainer.transform.localPosition;
+        // Note: CharacterAnimator will handle position animations now
     }    void Update()
     {
-        // Animation logic for visual container
-        if (visualContainer != null)
-        {
-            if (isWalking && enableWalkAnimation)
-            {
-                // Walking bounce animation
-                float bounce = Mathf.Sin(Time.time * bounceSpeed) * bounceHeight;
-                
-                Vector3 visualPos = originalBodyPosition;
-                visualPos.y += bounce;
-                visualContainer.transform.localPosition = visualPos;
-            }
-            else if (enableBreathingAnimation)
-            {
-                // Idle breathing animation
-                float breathing = Mathf.Sin(Time.time * breathingSpeed) * breathingHeight;
-                
-                Vector3 visualPos = originalBodyPosition;
-                visualPos.y += breathing;
-                visualContainer.transform.localPosition = visualPos;
-            }
-            else
-            {
-                // No animation - return to original position
-                visualContainer.transform.localPosition = originalBodyPosition;
-            }
-        }
-        
-        // Handle animation if we're animating
-        if (isAnimating && bodyFrames.Count > 0)
-        {
-            frameTimer += Time.deltaTime;
-            if (frameTimer >= 1f / frameRate)
-            {
-                frameTimer = 0f;
-                currentFrame = (currentFrame + 1) % bodyFrames.Count;
-                
-                // Update the sprite cells
-                Vector2Int bodyFrame = bodyFrames[currentFrame];
-                Vector2Int headFrame = headFrames[currentFrame];
-                
-                SetBodySpriteCell(bodyFrame.x, bodyFrame.y);
-                SetHeadSpriteCell(headFrame.x, headFrame.y);
-            }
-        }
+        // Validate references in case something got destroyed
+        ValidateReferences();
         
         // Update head position if inspector values changed
         #if UNITY_EDITOR
@@ -171,124 +119,38 @@ public class MeshVisualizer : MonoBehaviour
                 originalHeadOffsetEast != headOffsetEast ||
                 originalHeadOffsetWest != headOffsetWest)
             {
-                // Update stored values
-                originalHeadOffsetSouth = headOffsetSouth;
+                // Update stored values                originalHeadOffsetSouth = headOffsetSouth;
                 originalHeadOffsetNorth = headOffsetNorth;
                 originalHeadOffsetEast = headOffsetEast;
                 originalHeadOffsetWest = headOffsetWest;
-                
-                // Re-apply current direction's position
-                // You'll need to track which direction is currently active
-                // For now, this will apply south direction
-                // You could add a currentDirection variable to track this better
             }
         }
         #endif
-    }
-    
-    // Set up animation frames for a specific direction
-    public void SetupDirectionalAnimation(Vector2 direction)
+
+        // Validate references to ensure nothing is null
+        ValidateReferences();
+    }    // Public getter for the visual container (used by CharacterAnimator)
+    public GameObject GetVisualContainer()
     {
-        // Clear previous animation
-        bodyFrames.Clear();
-        headFrames.Clear();
-        currentFrame = 0;
-        frameTimer = 0f;
-        
-        // Determine which direction based on input
-        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        // If visual container doesn't exist yet, create it
+        if (visualContainer == null)
         {
-            if (direction.x > 0)
-            {
-                // East/right animation
-                SetupEastAnimation(false);
-            }
-            else
-            {
-                // West/left animation (flipped East)
-                SetupEastAnimation(true);
-            }
-        }
-        else
-        {
-            if (direction.y > 0)
-            {
-                // North/up animation
-                SetupNorthAnimation();
-            }
-            else
-            {
-                // South/down animation
-                SetupSouthAnimation();
-            }        }
-        
-        // Start walking animation
-        isWalking = true;
-        isAnimating = enableWalkAnimation && bodyFrames.Count > 1;
-    }
-    
-    private void SetupSouthAnimation()
-    {
-        // For walking south animation
-        FlipSprites(false); // Reset flip
-        
-        // Set head position for south direction
-        SetHeadPositionForDirection("south");
-        
-        // If you have multiple frames for walking, add them here
-        // For now, we'll just use the single South frame
-        bodyFrames.Add(new Vector2Int(0, 0));  // Body south frame
-        headFrames.Add(new Vector2Int(1, 0));  // Head south frame
-        
-        // Apply the first frame immediately
-        SetBodySpriteCell(0, 0);
-        SetHeadSpriteCell(1, 0);
-    }
-    
-    private void SetupEastAnimation(bool flip)
-    {
-        // For walking east/west animation
-        FlipSprites(flip);
-        
-        // Set head position for east or west direction
-        if (flip)
-        {
-            SetHeadPositionForDirection("west");
-        }
-        else
-        {
-            SetHeadPositionForDirection("east");
+            Debug.LogWarning("Visual container was null, creating it now...");
+            visualContainer = new GameObject("VisualContainer");
+            visualContainer.transform.SetParent(transform);
+            visualContainer.transform.localPosition = Vector3.zero;
+            
+            // Hide from Inspector to prevent serialization issues
+            visualContainer.hideFlags = HideFlags.DontSaveInEditor;
         }
         
-        // Add animation frames
-        bodyFrames.Add(new Vector2Int(0, 1));  // Body east frame
-        headFrames.Add(new Vector2Int(1, 1));  // Head east frame
-        
-        // Apply the first frame immediately
-        SetBodySpriteCell(0, 1);
-        SetHeadSpriteCell(1, 1);
+        return visualContainer;
     }
-    
-    private void SetupNorthAnimation()
-    {
-        // For walking north animation
-        FlipSprites(false); // Reset flip
-        
-        // Set head position for north direction
-        SetHeadPositionForDirection("north");
-        
-        // Add animation frames
-        bodyFrames.Add(new Vector2Int(0, 2));  // Body north frame
-        headFrames.Add(new Vector2Int(1, 2));  // Head north frame
-        
-        // Apply the first frame immediately
-        SetBodySpriteCell(0, 2);
-        SetHeadSpriteCell(1, 2);
-    }
-    
-    // New method to set head position based on direction
+      // New method to set head position based on direction
     public void SetHeadPositionForDirection(string direction)
     {
+        ValidateReferences();
+        
         if (headObject == null) return;
         
         Vector3 targetPosition;
@@ -371,11 +233,11 @@ public class MeshVisualizer : MonoBehaviour
         uvs[3] = new Vector2(startU + cellWidth, startV);   // Bottom-right
         
         return uvs;
-    }
-
-    // Method to change body sprite
+    }    // Method to change body sprite
     public void SetBodySpriteCell(int column, int row)
     {
+        ValidateReferences();
+        
         bodyColumnIndex = column;
         bodyRowIndex = row;
         
@@ -386,10 +248,11 @@ public class MeshVisualizer : MonoBehaviour
         if (bodyMeshFilter && bodyMeshFilter.mesh)
             bodyMeshFilter.mesh.uv = uvs;
     }
-    
-    // Method to change head sprite
+      // Method to change head sprite
     public void SetHeadSpriteCell(int column, int row)
     {
+        ValidateReferences();
+        
         headColumnIndex = column;
         headRowIndex = row;
         
@@ -400,9 +263,10 @@ public class MeshVisualizer : MonoBehaviour
         if (headMeshFilter && headMeshFilter.mesh)
             headMeshFilter.mesh.uv = uvs;
     }
-    
-    public void FlipSprites(bool flip)
+      public void FlipSprites(bool flip)
     {
+        ValidateReferences();
+        
         // Only proceed if the flip state is changing
         if (isFlipped == flip) return;
         
@@ -428,8 +292,7 @@ public class MeshVisualizer : MonoBehaviour
         {
             Mesh mesh = headMeshFilter.mesh;
             Vector3[] vertices = mesh.vertices;
-            
-            for (int i = 0; i < vertices.Length; i++)
+              for (int i = 0; i < vertices.Length; i++)
             {
                 vertices[i].x = headWidth - vertices[i].x;
             }
@@ -441,18 +304,54 @@ public class MeshVisualizer : MonoBehaviour
         // Note: Head position is now handled by SetHeadPositionForDirection()
         // so we don't need to adjust position here anymore
     }
-    
-    // Call this when character stops moving
-    public void StopWalking()
+
+    void OnDestroy()
     {
-        isWalking = false;
-        isAnimating = false;
-        
-        // Set to idle frame (first frame of current direction)
-        if (bodyFrames.Count > 0)
+        // Clean up dynamically created objects to prevent Inspector errors
+        if (headObject != null)
         {
-            SetBodySpriteCell(bodyFrames[0].x, bodyFrames[0].y);
-            SetHeadSpriteCell(headFrames[0].x, headFrames[0].y);
+            DestroyImmediate(headObject);
+            headObject = null;
+        }
+        
+        if (visualContainer != null)
+        {
+            DestroyImmediate(visualContainer);
+            visualContainer = null;
+        }
+    }
+    
+    // Validation method to ensure all references are valid
+    private void ValidateReferences()
+    {
+        if (visualContainer == null)
+        {
+            Debug.LogWarning("VisualContainer became null, recreating...");
+            visualContainer = new GameObject("VisualContainer");
+            visualContainer.transform.SetParent(transform);
+            visualContainer.transform.localPosition = Vector3.zero;
+            visualContainer.hideFlags = HideFlags.DontSaveInEditor;
+        }
+        
+        if (headObject == null && visualContainer != null)
+        {
+            Debug.LogWarning("HeadObject became null, recreating...");
+            headObject = new GameObject("Head");
+            headObject.transform.SetParent(visualContainer.transform);
+            headObject.transform.localPosition = headOffsetSouth;
+            headObject.hideFlags = HideFlags.DontSaveInEditor;
+            
+            // Re-add components
+            headMeshFilter = headObject.AddComponent<MeshFilter>();
+            MeshRenderer headRenderer = headObject.AddComponent<MeshRenderer>();
+            
+            // Re-setup head mesh and material
+            if (spritesheetMaterial != null)
+            {
+                Mesh headMesh = CreateMesh(headWidth, headHeight, headColumnIndex, headRowIndex);
+                headMeshFilter.mesh = headMesh;
+                headRenderer.material = spritesheetMaterial;
+            }
         }
     }
 }
