@@ -18,7 +18,19 @@ public class MeshVisualizer : MonoBehaviour
     [SerializeField] private int headRowIndex = 0;
     [SerializeField] private float headWidth = 1f;
     [SerializeField] private float headHeight = 1f;
-    [SerializeField] private Vector3 headOffset = new Vector3(0f, 0.8f, 0f);
+    
+    // Head positioning variables - individual offsets for each direction
+    [Header("Head Positioning Per Direction")]
+    [SerializeField] private Vector3 headOffsetSouth = new Vector3(-0.11f, 0.8f, -0.1f);  // Down
+    [SerializeField] private Vector3 headOffsetNorth = new Vector3(-0.11f, 0.8f, 0.1f);   // Up (behind body)
+    [SerializeField] private Vector3 headOffsetEast = new Vector3(-0.11f, 0.8f, -0.1f);   // Right
+    [SerializeField] private Vector3 headOffsetWest = new Vector3(0.0f, 0.8f, -0.1f);     // Left (flipped right)
+    
+    // Store the original values
+    private Vector3 originalHeadOffsetSouth;
+    private Vector3 originalHeadOffsetNorth;
+    private Vector3 originalHeadOffsetEast;
+    private Vector3 originalHeadOffsetWest;
     
     // Animation variables
     [SerializeField] private float frameRate = 10f;
@@ -43,6 +55,12 @@ public class MeshVisualizer : MonoBehaviour
     {
         Debug.Log("MeshRenderer Start");
 
+        // Store the original head offset values from inspector
+        originalHeadOffsetSouth = headOffsetSouth;
+        originalHeadOffsetNorth = headOffsetNorth;
+        originalHeadOffsetEast = headOffsetEast;
+        originalHeadOffsetWest = headOffsetWest;
+
         // Get or create MeshFilter for body
         bodyMeshFilter = GetComponent<MeshFilter>();
         if (bodyMeshFilter == null)
@@ -60,7 +78,7 @@ public class MeshVisualizer : MonoBehaviour
         // Create a child GameObject for the head
         headObject = new GameObject("Head");
         headObject.transform.SetParent(transform);
-        headObject.transform.localPosition = new Vector3(headOffset.x, headOffset.y, -0.1f); // To make head appear in front of body
+        headObject.transform.localPosition = headOffsetSouth; // Use the new variables
         
         // Add components to head
         headMeshFilter = headObject.AddComponent<MeshFilter>();
@@ -97,6 +115,31 @@ public class MeshVisualizer : MonoBehaviour
                 SetHeadSpriteCell(headFrame.x, headFrame.y);
             }
         }
+        
+        // Update head position if inspector values changed
+        #if UNITY_EDITOR
+        if (headObject != null)
+        {
+            // Check if any offset values changed and update accordingly
+            // This allows real-time tweaking in the inspector during play mode
+            if (originalHeadOffsetSouth != headOffsetSouth ||
+                originalHeadOffsetNorth != headOffsetNorth ||
+                originalHeadOffsetEast != headOffsetEast ||
+                originalHeadOffsetWest != headOffsetWest)
+            {
+                // Update stored values
+                originalHeadOffsetSouth = headOffsetSouth;
+                originalHeadOffsetNorth = headOffsetNorth;
+                originalHeadOffsetEast = headOffsetEast;
+                originalHeadOffsetWest = headOffsetWest;
+                
+                // Re-apply current direction's position
+                // You'll need to track which direction is currently active
+                // For now, this will apply south direction
+                // You could add a currentDirection variable to track this better
+            }
+        }
+        #endif
     }
     
     // Set up animation frames for a specific direction
@@ -144,6 +187,9 @@ public class MeshVisualizer : MonoBehaviour
         // For walking south animation
         FlipSprites(false); // Reset flip
         
+        // Set head position for south direction
+        SetHeadPositionForDirection("south");
+        
         // If you have multiple frames for walking, add them here
         // For now, we'll just use the single South frame
         bodyFrames.Add(new Vector2Int(0, 0));  // Body south frame
@@ -159,6 +205,16 @@ public class MeshVisualizer : MonoBehaviour
         // For walking east/west animation
         FlipSprites(flip);
         
+        // Set head position for east or west direction
+        if (flip)
+        {
+            SetHeadPositionForDirection("west");
+        }
+        else
+        {
+            SetHeadPositionForDirection("east");
+        }
+        
         // Add animation frames
         bodyFrames.Add(new Vector2Int(0, 1));  // Body east frame
         headFrames.Add(new Vector2Int(1, 1));  // Head east frame
@@ -173,6 +229,9 @@ public class MeshVisualizer : MonoBehaviour
         // For walking north animation
         FlipSprites(false); // Reset flip
         
+        // Set head position for north direction
+        SetHeadPositionForDirection("north");
+        
         // Add animation frames
         bodyFrames.Add(new Vector2Int(0, 2));  // Body north frame
         headFrames.Add(new Vector2Int(1, 2));  // Head north frame
@@ -182,6 +241,39 @@ public class MeshVisualizer : MonoBehaviour
         SetHeadSpriteCell(1, 2);
     }
     
+    // New method to set head position based on direction
+    public void SetHeadPositionForDirection(string direction)
+    {
+        if (headObject == null) return;
+        
+        Vector3 targetPosition;
+        
+        switch (direction.ToLower())
+        {
+            case "north":
+            case "up":
+                targetPosition = originalHeadOffsetNorth;
+                break;
+            case "south":
+            case "down":
+                targetPosition = originalHeadOffsetSouth;
+                break;
+            case "east":
+            case "right":
+                targetPosition = originalHeadOffsetEast;
+                break;
+            case "west":
+            case "left":
+                targetPosition = originalHeadOffsetWest;
+                break;
+            default:
+                targetPosition = originalHeadOffsetSouth; // Default fallback
+                break;
+        }
+        
+        headObject.transform.localPosition = targetPosition;
+    }
+
     private Mesh CreateMesh(float width, float height, int columnIndex, int rowIndex)
     {
         Mesh mesh = new Mesh();
@@ -264,14 +356,6 @@ public class MeshVisualizer : MonoBehaviour
             headMeshFilter.mesh.uv = uvs;
     }
     
-    // Method to adjust head position at runtime
-    public void SetHeadOffset(Vector3 offset)
-    {
-        headOffset = offset;
-        if (headObject)
-            headObject.transform.localPosition = headOffset;
-    }
-
     public void FlipSprites(bool flip)
     {
         // Only proceed if the flip state is changing
@@ -279,7 +363,7 @@ public class MeshVisualizer : MonoBehaviour
         
         isFlipped = flip;
         
-        // Adjust the body mesh vertices instead of scaling
+        // Adjust the body mesh vertices
         if (bodyMeshFilter && bodyMeshFilter.mesh)
         {
             Mesh mesh = bodyMeshFilter.mesh;
@@ -287,7 +371,6 @@ public class MeshVisualizer : MonoBehaviour
             
             for (int i = 0; i < vertices.Length; i++)
             {
-                // Flip around the center of the mesh
                 vertices[i].x = bodyWidth - vertices[i].x;
             }
             
@@ -295,7 +378,7 @@ public class MeshVisualizer : MonoBehaviour
             mesh.RecalculateBounds();
         }
         
-        // Do the same for the head mesh
+        // Adjust the head mesh vertices
         if (headMeshFilter && headMeshFilter.mesh)
         {
             Mesh mesh = headMeshFilter.mesh;
@@ -303,22 +386,14 @@ public class MeshVisualizer : MonoBehaviour
             
             for (int i = 0; i < vertices.Length; i++)
             {
-                // Flip around the center of the mesh
                 vertices[i].x = headWidth - vertices[i].x;
             }
             
             mesh.vertices = vertices;
             mesh.RecalculateBounds();
-            
-            // Adjust head position
-            Vector3 headPos = headObject.transform.localPosition;
-            headPos.x = flip ? -headOffset.x : headOffset.x;
-            headObject.transform.localPosition = headPos;
         }
-    }
-    
-    public bool IsFlipped()
-    {
-        return isFlipped;
+        
+        // Note: Head position is now handled by SetHeadPositionForDirection()
+        // so we don't need to adjust position here anymore
     }
 }

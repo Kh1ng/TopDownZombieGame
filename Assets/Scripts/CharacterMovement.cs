@@ -69,22 +69,24 @@ public class CharacterMovement : MonoBehaviour
         // Reset flip state
         meshVisualizer.FlipSprites(false);
         
-        // Determine which direction based on vector
+        // Determine which direction and set appropriate head position
         if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
             // Horizontal movement prioritized
             if (direction.x > 0)
             {
                 // Face right
-                meshVisualizer.SetBodySpriteCell(0, 1); // Body column 0, row 1 (East)
-                meshVisualizer.SetHeadSpriteCell(1, 1); // Head column 1, row 1 (East)
+                meshVisualizer.SetBodySpriteCell(0, 1);
+                meshVisualizer.SetHeadSpriteCell(1, 1);
+                meshVisualizer.SetHeadPositionForDirection("east");
             }
             else
             {
                 // Face left (flipped East)
-                meshVisualizer.SetBodySpriteCell(0, 1); // Body column 0, row 1 (East)
-                meshVisualizer.SetHeadSpriteCell(1, 1); // Head column 1, row 1 (East)
-                meshVisualizer.FlipSprites(true);       // Then flip
+                meshVisualizer.SetBodySpriteCell(0, 1);
+                meshVisualizer.SetHeadSpriteCell(1, 1);
+                meshVisualizer.FlipSprites(true);
+                meshVisualizer.SetHeadPositionForDirection("west");
             }
         }
         else
@@ -93,14 +95,16 @@ public class CharacterMovement : MonoBehaviour
             if (direction.y > 0)
             {
                 // Face up
-                meshVisualizer.SetBodySpriteCell(0, 2); // Body column 0, row 2 (North) 
-                meshVisualizer.SetHeadSpriteCell(1, 2); // Head column 1, row 2 (North)
+                meshVisualizer.SetBodySpriteCell(0, 2);
+                meshVisualizer.SetHeadSpriteCell(1, 2);
+                meshVisualizer.SetHeadPositionForDirection("north");
             }
             else
             {
                 // Face down
-                meshVisualizer.SetBodySpriteCell(0, 0); // Body column 0, row 0 (South)
-                meshVisualizer.SetHeadSpriteCell(1, 0); // Head column 1, row 0 (South)
+                meshVisualizer.SetBodySpriteCell(0, 0);
+                meshVisualizer.SetHeadSpriteCell(1, 0);
+                meshVisualizer.SetHeadPositionForDirection("south");
             }
         }
     }
